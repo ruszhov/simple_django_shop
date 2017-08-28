@@ -2,6 +2,8 @@ from django.contrib import admin
 from .models import *
 # Register your models here.
 
+#test 123
+
 class ProductImageInline(admin.TabularInline):		#ств клас ProductImageInline щоб добавити його в адмінці до розділу продукти(тобто коли зайдем на конкретний продукт, то в низ убудуть і фотки з моделі ProductImage)
 	model = ProductImage			
 	extra = 0
