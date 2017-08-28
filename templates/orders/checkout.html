@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+	<div class="container">
+        <div class="row">
+            {% if not products_in_basket %}
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h3 class="text-center">Товари в кошику<br>
+                    <h5 class="text-center">Загальна сума: {{ request.session.basket.total_amount }} грн. </h5>
+                    {{ request.session.basket.products }}
+
+                <form class="form-horizontal" method="post">{% csrf_token %}
+
+                    <!-- {{ form.errors }} - глобальний масив помилок -->
+
+                    <div class="form-group">
+                        <div class = "col-lg-8">
+                            <label>Ім'я</label>
+                            <span class="form-error">{{ form.name.errors }}</span>
+                            <input type="text" name="{{ form.name.html_name }}" class="form-control"
+                                value="{{ request.POST.name }}"         
+                            ><!-- Значення записане тут буде зберігатися при перезагрузці сторінки -->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class = "col-lg-8">
+                            <label>Телефон</label>
+                            <span class="form-error">{{ form.phone.errors }}</span>
+                            <input type="text" name="{{ form.phone.html_name }}" class="form-control"
+                                value="{{ request.POST.phone }}"        
+                            ><!-- Значення записане тут буде зберігатися при перезагрузці сторінки -->
+                        </div>
+                    </div>
+
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th>Назва товару</th>
+                                <th>Кількість</th>
+                                <th>Ціна за одиницю</th>
+                                <th>Загальна ціна</th>
+                            </tr>    
+                        </thead>
+                        <tbody>
+                            {% for product_in_basket in products_in_basket %}
+                            <tr>
+                                <td>
+                                    {{ product_in_basket.product.name }}
+                                </td>
+                                <td>
+                                    <input value="{{ product_in_basket.nmb }}" type="number" class="product-in-basket-nmb" name="product_in_basket_{{ product_in_basket.id }}">
+                                </td>
+                                <td>
+                                    <span class="product-price">
+                                        {{ product_in_basket.price_per_item }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="total-product-in-basket-amount">
+                                        {{ product_in_basket.total_price }}
+                                    </span>    
+                                </td>
+                            </tr>
+                                                  
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="text-right">
+                        <b>Сума замовлення:</b> <span id ="total_order_amount"></span> грн.
+                    </div>
+                    <hr>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary btn-lg">Замовити</button>
+                    </div>
+                </from>
+                </div>
+            {% else %}
+                <h3 class="text-center">У Вашому кошику ще немає ніяких, блін, товарів</h3>
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,47 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+	<meta chareset="UTF-8">
+	<title>Title</title>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+	<!-- Custom Files -->
+	<link rel="stylesheet" href="{% static 'css/landing.css' %}">
+    
+</head>
+
+<body>
+	
+    <div class="general-container">
+        <div class="container top-container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h1 class="title">Наш магазин скоро відкриється<br>
+                    	Залиште свій e-mail в формі нижче</h1>
+                    <div>
+                        <form action="" method="post" class="form-inline text-center">{% csrf_token %}<!-- {{ form.as_p }}		щоб рядки форми відображались з нового абзацу -->
+                        <div class="form-group">
+                        	<label>Ваш е-мейл:</label>
+                        	<input type="e-mail" name="{{ form.email.name }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                        	<label>Ваше ім'я:</label>
+                	     	<input type="text" name="{{ form.name.name }}" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary orange-btn">Відправити</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- jQuery -->
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <!-- jQuery bootstrap-->
+    <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+    
+</body>
+</html>

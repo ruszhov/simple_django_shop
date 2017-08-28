@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="section-top">
+    <img src="{% static 'img/slider0.jpg' %}" class="img-responsive"/>
+</div>    
+    <div class="section section1">
+        <div class="container">
+        	<div class="row">
+                <div class="col-lg-12">
+                    <h1 class = "text-center">
+                        Нові надходження
+                    </h1>
+                </div>
+                {% for product_image in products_images%}        <!-- product - любе слово, products - аплікація --> 
+                    {% include 'landing/product_item.html' %}
+                {% endfor %}  
+            </div>
+        </div>
+    </div>
+    <div class="section section-delivery">
+        <div>
+            <h3>Free shipping</h3>
+        </div>
+    </div>    
+        <div class="section section2 phones-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class = "text-center">
+                        Телефони
+                    </h1>
+                </div>
+                {% for product_image in products_images_phones%}        <!-- product - любе слово, products - аплікація --> 
+                    {% include 'landing/product_item.html' %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+        <div class="section section3 laptops-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class = "text-center">
+                        Ноутбуки
+                    </h1>
+                </div>
+                {% for product_image in products_images_laptops%}      
+                    {% include 'landing/product_item.html' %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
